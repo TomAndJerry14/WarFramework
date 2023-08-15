@@ -1,0 +1,216 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4061742072214628648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10077b33d0ecfb946a040295828df2f7, type: 3}
+  m_Name: Slate
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -200, y: -312}
+  ports:
+    keys:
+    - success
+    - _success
+    values:
+    - _fieldName: success
+      _node: {fileID: -4061742072214628648}
+      _typeQualifiedName: War.SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: _success
+        node: {fileID: 4081002746128807670}
+        reroutePoints: []
+      - fieldName: _success
+        node: {fileID: 3310536130038543094}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: _success
+      _node: {fileID: -4061742072214628648}
+      _typeQualifiedName: War.SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  _success: {fileID: 0}
+  success: {fileID: 0}
+  curScene: {fileID: 7360423838515997788, guid: df572818e77979a448bd976b3037fa63, type: 3}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d9ab2a437befd4281bbc1731ac3c54, type: 3}
+  m_Name: SkillA
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -4061742072214628648}
+  - {fileID: 4081002746128807670}
+  - {fileID: 3310536130038543094}
+  - {fileID: 7071980726578233682}
+--- !u!114 &3310536130038543094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10077b33d0ecfb946a040295828df2f7, type: 3}
+  m_Name: Slate
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 120, y: -440}
+  ports:
+    keys:
+    - _success
+    - success
+    values:
+    - _fieldName: _success
+      _node: {fileID: 3310536130038543094}
+      _typeQualifiedName: War.SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: success
+        node: {fileID: -4061742072214628648}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: success
+      _node: {fileID: 3310536130038543094}
+      _typeQualifiedName: War.SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: _success
+        node: {fileID: 7071980726578233682}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  _success: {fileID: 0}
+  success: {fileID: 0}
+  curScene: {fileID: 0}
+--- !u!114 &4081002746128807670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 031a9b18263031542969828f5efbd34b, type: 3}
+  m_Name: Receive
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 120, y: -232}
+  ports:
+    keys:
+    - fail
+    - success
+    - _success
+    values:
+    - _fieldName: fail
+      _node: {fileID: 4081002746128807670}
+      _typeQualifiedName: War.SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: success
+      _node: {fileID: 4081002746128807670}
+      _typeQualifiedName: War.SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: _success
+        node: {fileID: 7071980726578233682}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: _success
+      _node: {fileID: 4081002746128807670}
+      _typeQualifiedName: War.SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: success
+        node: {fileID: -4061742072214628648}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  _success: {fileID: 0}
+  success: {fileID: 0}
+  fail: {fileID: 0}
+  time: 0
+  conditionType: 0
+  condition_KeyCode: 0
+--- !u!114 &7071980726578233682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10077b33d0ecfb946a040295828df2f7, type: 3}
+  m_Name: Slate
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 456, y: -328}
+  ports:
+    keys:
+    - _success
+    - success
+    values:
+    - _fieldName: _success
+      _node: {fileID: 7071980726578233682}
+      _typeQualifiedName: War.SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: success
+        node: {fileID: 3310536130038543094}
+        reroutePoints: []
+      - fieldName: success
+        node: {fileID: 4081002746128807670}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: success
+      _node: {fileID: 7071980726578233682}
+      _typeQualifiedName: War.SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  _success: {fileID: 0}
+  success: {fileID: 0}
+  curScene: {fileID: 0}
