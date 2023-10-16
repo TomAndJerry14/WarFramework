@@ -14,36 +14,42 @@ namespace War
     {
         //’ŸªΩŒÔ
         public Fighter entity;
+        private Fighter instantiation_entity;
 
-        public Action<Fighter, Fighter, HitResult> onHit;
+        public Action<HitResult> onHit;
 
-        public int survivalTime;
+        public float survivalTime;
+
+        public CmdPort outPort;
 
         public override async void Excute()
         {
-            entity = new GameObject().AddComponent<Fighter>();
-            entity.onHit += onHit;
-            entity.onHit += OnHit;
-            entity.Owner = sender;
+            Debug.Log("Excute");
+            outPort = new CmdPort();
+            instantiation_entity = GameObject.Instantiate(entity);
+            instantiation_entity.onHit += onHit;
+            instantiation_entity.onHit += OnHit;
+            instantiation_entity.Owner = sender;
 
-            await UniTask.Delay(survivalTime);
+            await UniTask.Delay(Mathf.CeilToInt(survivalTime * 1000));
 
-            cmdFinished = true;
+            CmdFinished = true;
         }
 
-        private void OnHit(Fighter _s, Fighter _f, HitResult _r)
+        private void OnHit(HitResult _r)
         {
-            cmdFinished = true;
+            CmdFinished = true;
         }
 
         public override void OnStop()
         {
             base.OnStop();
 
-            entity.onHit -= onHit;
-            entity.onHit -= OnHit;
+            Debug.Log("OnStop");
+            instantiation_entity.onHit -= onHit;
+            instantiation_entity.onHit -= OnHit;
 
-            GameObject.Destroy(entity.gameObject);
+            GameObject.Destroy(instantiation_entity.gameObject);
         }
 
     }

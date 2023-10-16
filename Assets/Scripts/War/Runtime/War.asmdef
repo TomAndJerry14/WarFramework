@@ -2,7 +2,10 @@
     "name": "War",
     "rootNamespace": "",
     "references": [
-        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:2289059ddf1745b4d80a0f184af99d6b",
+        "GUID:66c2eb417c67ad849907d0769db96dbf",
+        "GUID:ba87e57c1aeddd64ea5aac265f9e97c9"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

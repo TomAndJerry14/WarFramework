@@ -27,11 +27,11 @@ namespace War
         {
             if (moveType == MoveType.FixedSpeed)
             {
-                receiver.TempMoveTo(destination, moveType, speed, (b) => { cmdFinished = true; isArrive = b; });
+                receiver.TempMoveTo(destination, moveType, speed, (b) => { CmdFinished = true; isArrive = b; });
             }
             else
             {
-                receiver.TempMoveTo(destination, moveType, time, (b) => { cmdFinished = true; isArrive = b; });
+                receiver.TempMoveTo(destination, moveType, time, (b) => { CmdFinished = true; isArrive = b; });
             }
 
             //todo 

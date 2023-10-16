@@ -7,7 +7,7 @@ namespace War
 {
     [Name("技能/事件")]
     [Attachable(typeof(ActorGroup))]
-    public class SlateEventTrack : CutsceneTrack
+    public class SlateEventTrack : SlateSkillTrack
     {
         public Fighter sender;
 

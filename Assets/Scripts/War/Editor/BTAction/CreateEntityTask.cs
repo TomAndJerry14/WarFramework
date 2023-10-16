@@ -25,19 +25,17 @@ namespace War
         {
             base.OnExecute();
 
-            var hitResult = HitResult.Fail;
-            cmd.onHit = (_sender, _receiver, _hitResult) =>
+            var hitResult = HitResult.Result.Fail;
+            cmd.onHit = (_hitResult) =>
             {
-                Debug.Log("on hit => _sender:" + _sender?.name + " - _receiver: " + _receiver?.name + " - _hitResult: " + _hitResult);
-                hitResult = _hitResult;
+                Debug.Log("on hit => _sender:" + _hitResult.Sender?.name + " - _receiver: " + _hitResult.Receiver?.name + " - _hitMsg: " + _hitResult.result);
+                hitResult = _hitResult.result;
             };
             cmd.Excute();
 
-            cmd.entity.TempHit();
+            await UniTask.WaitUntil(() => cmd.CmdFinished);
 
-            await UniTask.WaitUntil(() => cmd.cmdFinished);
-
-            EndAction(hitResult == HitResult.Success);
+            EndAction(hitResult == HitResult.Result.Success);
         }
     }
 }

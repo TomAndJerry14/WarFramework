@@ -27,7 +27,7 @@ namespace War
 
             moveCmd.Excute();
 
-            await UniTask.WaitUntil(() => moveCmd.cmdFinished);
+            await UniTask.WaitUntil(() => moveCmd.CmdFinished);
 
             EndAction(true);
         }

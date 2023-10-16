@@ -2,6 +2,7 @@ using NodeCanvas.Framework;
 using Slate;
 using ParadoxNotion.Design;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace War
 {
@@ -11,6 +12,8 @@ namespace War
     {
         public Cutscene cutScene;
         private Cutscene _cutScene;
+
+        public Dictionary<string, IResult> resultDict;
 
         protected override void OnExecute()
         {
@@ -24,6 +27,7 @@ namespace War
         protected override string OnInit()
         {
             blackboard.SetVariableValue("sender", this.ownerSystemAgent.gameObject);
+            resultDict = blackboard.GetVariable("outputResult").value as Dictionary<string, IResult> ?? new Dictionary<string, IResult>();
             Debug.Log("OnInit sender => " + this.ownerSystemAgent.gameObject);
             return base.OnInit();
         }
@@ -43,6 +47,14 @@ namespace War
         protected override void OnUpdate()
         {
             base.OnUpdate();
+
+
+            var dict = _cutScene.GetResult();
+            foreach (var kv in dict)
+            {
+                resultDict[kv.Key] = kv.Value;
+            }
+            blackboard.SetVariableValue("outputResult", resultDict);
 
             if (_cutScene.currentTime >= _cutScene.playTimeMax)
                 EndAction();

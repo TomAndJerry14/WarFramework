@@ -10,13 +10,26 @@ namespace War
 
         public Fighter receiver;
 
-        public bool cmdFinished = false;
+        private bool cmdFinished = false;
+        public bool CmdFinished
+        {
+            get
+            {
+                return cmdFinished;
+            }
+            set
+            {
+                if (!cmdFinished)
+                    Stop();
+                cmdFinished = value;
+            }
+        }
 
         public abstract void Excute();
 
-        public void Stop() 
+        private void Stop()
         {
-            throw new System.NotImplementedException();
+            OnStop();
         }
 
         public virtual void OnStop()

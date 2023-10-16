@@ -12,7 +12,7 @@ namespace War
 
 
 
-    [Name("ÊÂ¼þ")]
+    [Name("»­Ïß")]
     [Attachable(typeof(SlateEventTrack))]
     public class SlateEventClip : ActionClip
     {

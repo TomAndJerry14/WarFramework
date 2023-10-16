@@ -14,15 +14,6 @@ namespace War
             base.OnEnter();
 
             ((ActorGroup)base.parent).actor = sender.gameObject;
-
-
-        }
-
-        protected void OnExit()
-        {
-            base.OnExit();
-
-
         }
     }
 }

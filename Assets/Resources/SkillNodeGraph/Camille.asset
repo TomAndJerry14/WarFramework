@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a686a47eee2fa44cb0a34b5d86e4d5e, type: 3}
+  m_Name: Camille
+  m_EditorClassIdentifier: 
+  _serializedGraph: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"_position":{"x":-605.6829,"y":112.5278},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"0"},{"_action":{"cutScene":1,"$type":"War.CutSceneTask"},"_position":{"x":-930.8263,"y":322.8073},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"1"},{"conditionFailReturn":1,"_condition":{"targetDictionary":{"_name":"outputResult","_targetVariableID":"8bc0a1eb-9af3-4857-b0f4-34fc5360a7fa"},"key":{"_value":"hitResult"},"saveValueAs":{"_name":""},"$type":"NodeCanvas.Tasks.Conditions.TryGetValue`1[[War.IResult,
+    War, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"_position":{"x":-767.8102,"y":321.9492},"$type":"NodeCanvas.BehaviourTrees.ConditionalEvaluator","$id":"2"},{"_position":{"x":-727.1606,"y":471.4294},"$type":"NodeCanvas.BehaviourTrees.Parallel","$id":"3"},{"_action":{"moveCmd":{"speed":10.0,"destination":{"z":10.0}},"$type":"War.MoveToTask"},"_position":{"x":-838.0895,"y":579.0482},"_comment":"\u5361\u7c73\u5c14\u52fe\u4e2d\u5899\u540e\u98de\u884c","$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"4"},{"_action":{"cutScene":2,"$type":"War.CutSceneTask"},"_position":{"x":-694.0,"y":585.0},"_comment":"\u753b\u7ebf","$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"5"},{"_condition":{"targetDictionary":{"_name":"outputResult","_targetVariableID":"8bc0a1eb-9af3-4857-b0f4-34fc5360a7fa"},"key":{"_value":"receiveInputResult"},"saveValueAs":{"_name":""},"$type":"NodeCanvas.Tasks.Conditions.TryGetValue`1[[War.IResult,
+    War, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"_position":{"x":-441.4745,"y":335.7209},"$type":"NodeCanvas.BehaviourTrees.ConditionalEvaluator","$id":"6"},{"_action":{"cutScene":3,"$type":"War.CutSceneTask"},"_position":{"x":-364.7292,"y":497.4139},"_comment":"\u649e\u51fb","$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"7"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"6"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{"sender":{"_name":"sender","_id":"345ba318-f948-4e2a-9057-3ab0bd350ad6","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
+    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"receiver":{"_name":"receiver","_id":"1c354fc8-2f97-4fc9-9aa7-d492fc1051cb","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
+    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"outputResult":{"_value":{},"_name":"outputResult","_id":"8bc0a1eb-9af3-4857-b0f4-34fc5360a7fa","$type":"NodeCanvas.Framework.Variable`1[[System.Collections.Generic.Dictionary`2[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[War.IResult,
+    War, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+    Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}},"derivedData":{"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
+  _objectReferences:
+  - {fileID: 0}
+  - {fileID: 7464588834958947387, guid: 1d868297a088f99449d058346182f581, type: 3}
+  - {fileID: 3285983865130166732, guid: a8d443d2c326ca74bb058d0b7c8cb33c, type: 3}
+  - {fileID: 3285983865130166732, guid: 243458e8300504a4ba5c1fc4e121badb, type: 3}
+  _graphSource:
+    _version: 3.28
+    _category: 
+    _comments: 
+    _translation: {x: 1109, y: -36}
+    _zoomFactor: 0.75009286
+  _haltSerialization: 0
+  _externalSerializationFile: {fileID: 0}

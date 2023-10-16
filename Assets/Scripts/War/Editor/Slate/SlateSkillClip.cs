@@ -21,5 +21,9 @@ namespace War
             role = base.actor.GetComponent<Fighter>();
         }
 
+        public virtual IResult GetResult()
+        {
+            return null;
+        }
     }
 }
