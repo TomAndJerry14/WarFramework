@@ -1,0 +1,17 @@
+{
+    "name": "Buff",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b600e3959b2b5cb4f8f716845470af44",
+        "GUID:5e4ffc8ad263708478c8b982e56db6d0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

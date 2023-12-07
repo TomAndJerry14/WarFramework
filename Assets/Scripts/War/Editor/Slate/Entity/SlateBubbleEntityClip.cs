@@ -20,7 +20,7 @@ namespace War
         private float _length = 1;
         public override float length { get => _length; set => _length = value; }
 
-        public Bubble go;
+        public Bullet go;
         private GameObject instantiate;
 
         private HitResult result;
@@ -34,14 +34,14 @@ namespace War
 
             if (!instantiate)
                 instantiate = GameObject.Instantiate(go.gameObject);
-            instantiate.GetComponent<Bubble>().onHit += OnHit;
+            instantiate.GetComponent<Bullet>().onHit += OnHit;
         }
 
 
         protected override void OnExit()
         {
             base.OnExit();
-            instantiate.GetComponent<Bubble>().onHit -= OnHit;
+            instantiate.GetComponent<Bullet>().onHit -= OnHit;
             Destroy(instantiate);
         }
 

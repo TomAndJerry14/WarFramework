@@ -6,15 +6,13 @@ namespace War
     public class SkillData
     {
         public int id = -1;
+
         public string name;
 
-        public AreaData data_area;
+        [Title("施法范围")]
+        public UseSkillRange useSkillRange;
 
-        public float damage;
-
-        /// <summary>
-        /// 面向敌人
-        /// </summary>
-        public bool face_to_enemy;
+        [Title("时间事件列表")]
+        public SkillEventData[] eventData;
     }
 }

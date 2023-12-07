@@ -22,7 +22,7 @@ namespace War
         public void Init(Fighter _owner)
         {
             this.owner = _owner;
-            btOwner = owner.GetComponent<BehaviourTreeOwner>();
+            //btOwner = owner.GetComponent<BehaviourTreeOwner>();
         }
 
         public void OnSkillFinish()
@@ -37,7 +37,7 @@ namespace War
             //Container.Next();
 
 
-            btOwner.StartBehaviour(bt);
+            //btOwner.StartBehaviour(bt);
         } 
     }
 }

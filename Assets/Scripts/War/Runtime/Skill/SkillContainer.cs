@@ -7,7 +7,7 @@ namespace War
     /// </summary>
     public class SkillContainer
     {
-        //LinkedListNode<SkillBase> curNode;
+        LinkedListNode<SkillBase> curNode;
         //LinkedList<SkillBase> skills;
 
         //初始化的时候已经构建好

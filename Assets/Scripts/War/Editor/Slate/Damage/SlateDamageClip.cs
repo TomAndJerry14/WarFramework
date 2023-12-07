@@ -43,7 +43,7 @@ namespace War
             Debug.Log("SlateDamageClip - OnEnter");
             base.OnEnter();
 
-            sender = ((SlateDamageTrack)parent).sender;
+            sender = ((SlateDamageTrack)parent)._sender;
             Debug.Log(sender.name);
         }
 

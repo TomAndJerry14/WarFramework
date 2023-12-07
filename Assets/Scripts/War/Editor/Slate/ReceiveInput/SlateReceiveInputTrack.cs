@@ -13,7 +13,7 @@ namespace War
         {
             base.OnEnter();
 
-            ((ActorGroup)base.parent).actor = sender.gameObject;
+            ((ActorGroup)base.parent).actor = _sender.gameObject;
         }
     }
 }

@@ -7,4 +7,6 @@ public enum ActionEnum
     SkillKeyCode1,
     SkillKeyCode2,
 
+    Sure,
+    Move,
 }

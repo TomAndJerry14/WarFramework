@@ -10,11 +10,11 @@ namespace War
     [Category("Skill")]
     public class DrawLineTask : ActionTask
     {
-        public DrawLineCmd cmd;
+        public DrawLineCommand cmd;
 
         protected override string OnInit()
         {
-            cmd.receiver = this.ownerSystemAgent.gameObject.GetComponent<Fighter>();
+            cmd.receivers = new Fighter[] { this.ownerSystemAgent.gameObject.GetComponent<Fighter>() };
 
             cmd.sender = this.ownerSystemAgent.gameObject.GetComponent<Fighter>();
 

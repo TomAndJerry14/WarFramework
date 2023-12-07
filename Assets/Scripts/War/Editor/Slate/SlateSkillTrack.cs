@@ -9,14 +9,14 @@ namespace War
     [Attachable(typeof(ActorGroup))]
     public class SlateSkillTrack : CutsceneTrack
     {
-        public Fighter sender;
+        public Fighter _sender;
 
         //todo 添加接受技能轨道 ， 接受技能与释放技能分开为两个不同的技能
         protected override void OnEnter()
         {
             base.OnEnter();
 
-            sender = ((ActorGroup)parent).actor.GetComponent<Fighter>();
+            _sender = ((ActorGroup)parent).actor.GetComponent<Fighter>();
         }
     }
 }
