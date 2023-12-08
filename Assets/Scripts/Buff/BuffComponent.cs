@@ -96,6 +96,7 @@ namespace War
         public void SendEvent(RoleEvent roleEvent)
         {
             List<BuffHandle> _handles = null;
+            //TODO 这里其他种类也需要触发
             switch (roleEvent)
             {
                 case RoleEvent.Attack:
