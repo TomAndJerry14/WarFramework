@@ -6,19 +6,27 @@ using System.Threading.Tasks;
 
 namespace Buff
 {
-    public abstract class BuffBase : ITickTimeHandle
+    public class BuffBase : ITickTimeHandle
     {
         protected BuffData data;
+        public BuffData Data => data;
+
+        public BuffExistType ExistType { get; }
+
 
         public int Id => data.id;
         public bool Stackalbe => data.stackable;
 
         public BuffTag[] Tags => data.tags;
 
-        public abstract BuffType BuffType
+        private bool isValid;
+        public bool IsValid
         {
-            get;
+            get { return isValid; }
+            set { isValid = value; }
         }
+
+
 
         private TickTimeHandle tickTimeHandle;
         public TickTimeHandle TickTimeHandle
@@ -26,14 +34,16 @@ namespace Buff
             get;
         }
 
-        public void Init(BuffData data, params object[] o)
+        private Action<BuffData> modifyAction;
+        private Action<BuffData> ModifyAction => modifyAction;
+
+        public void Init(BuffData data, Action<BuffData> modify)
         {
             this.data = data;
-            tickTimeHandle = new TickTimeHandle(data.durationTime, data.deltaTime, Tick);
-            InitParams(o);
+            this.modifyAction = modify;
+            if (data.deltaTime > 0)
+                tickTimeHandle = new TickTimeHandle(data.durationTime, data.deltaTime, Tick);
         }
-
-        protected abstract void InitParams(params object[] o);
 
         public void Enter()
         {
@@ -44,6 +54,11 @@ namespace Buff
         void Tick(float time)
         {
             OnTick(time);
+            if (!tickTimeHandle.IsValid)
+            {
+                Exit();
+                UnityEngine.Debug.Log("Time Handle Exit");
+            }
         }
 
         protected virtual void OnTick(float time)
@@ -51,7 +66,16 @@ namespace Buff
 
         }
 
-        public abstract void Excute();
+        public void Excute()
+        {
+            ModifyAction?.Invoke(this.data);
+            OnExcute();
+        }
+        protected virtual void OnExcute()
+        {
+
+        }
+
 
         protected virtual void OnEnter()
         {

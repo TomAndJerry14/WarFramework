@@ -19,7 +19,7 @@ public class AttributeCom
         }
     }
 
-    Dictionary<AttributeType, float> attrDic = new Dictionary<AttributeType, float>();
+    protected Dictionary<AttributeType, float> attrDic = new Dictionary<AttributeType, float>();
     public AttributeCom()
     {
         foreach (AttributeType item in Enum.GetValues(typeof(AttributeType)))
@@ -39,6 +39,6 @@ public class AttributeCom
             attrDic[type] = value;
         }
     }
-
-
 }
+
+    

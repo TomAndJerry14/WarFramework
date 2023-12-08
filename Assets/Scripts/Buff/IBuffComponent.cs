@@ -8,17 +8,16 @@ namespace Buff
 {
     public interface IBuffComponent
     {
-        public List<BuffHandle> Handles { get; }
-
         public void Add(BuffData data);
         public void Tick(float tickDeltaTime);
+
+        public void SetInValid(BuffData data);
         public void Remove(BuffData data);
 
-        public bool CanMove { get; }
+        public void SendEvent(RoleEvent roleEvent);
 
-        public bool CanAttck { get; }
+        public BuffBase[] GetBuffs(BuffTag tag);
 
-        public bool CanSelect { get; }
-
+        public BuffBase[] GetBuffs(BuffExistType type, BuffTag tag);
     }
 }

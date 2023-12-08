@@ -18,6 +18,8 @@ namespace Buff
 
         public BuffType type;
 
+        public BuffExistType existType;
+
         //优先级
         public int priority;
 
@@ -29,7 +31,7 @@ namespace Buff
 
         public float deltaTime;
 
-        public bool isIncremental;
+        public ModifyType modifyType;
 
         public AttributeType attribute;
 

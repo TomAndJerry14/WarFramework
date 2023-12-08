@@ -9,4 +9,5 @@ public enum AttributeType
     HP,
     MP,
     MoveSpeed,
+    Attack,
 }

@@ -17,6 +17,8 @@ namespace War
         private AttributeCom attrCom = new AttributeCom();
         public AttributeCom AttrCom { get => attrCom; }
 
+
+
         public StateCtrl StateCtrl { get; set; }
 
         private Fighter owner;
@@ -34,13 +36,11 @@ namespace War
                 if (buffCom == null)
                 {
                     buffCom = new BuffComponent();
-                    buffCom.OnBuffTick += OnBuffTick;
+                    buffCom.OnBuffExcute += OnBuffExcute;
                 }
                 return buffCom;
             }
         }
-
-
 
         public FighterTeamEnum teamEnum;
 
@@ -50,32 +50,45 @@ namespace War
             StateCtrl = new StateCtrl();
         }
 
-        public void Start()
+        void OnBuffExcute(BuffData data)
         {
-
-        }
-
-        void OnBuffTick(BuffData data)
-        {
-            switch (data.type)
+            Debug.Log("OnBuffExcute");
+            if (data.type == BuffType.AttriBute)
             {
-                case BuffType.ModifyAttriBute:
-                    OnAttributeChanged(data.attribute, data.value);
-                    break;
-                default: 
-                    return;
+                OnBuffTick(data);
+            }
+            else if (data.type == BuffType.Event)
+            {
+                skillCom.UseSkill((int)data.value);
+                Debug.Log($" skillCom.UseSkill{((int)data.value)}");
             }
         }
 
-        void OnAttributeChanged(AttributeType attribute, float value)
+        private void OnBuffTick(BuffData data)
         {
-            this.AttrCom[attribute] += value;
-            Debug.Log($"type: {attribute}   value:{this.AttrCom[attribute]}");
+            switch (data.modifyType)
+            {
+                case ModifyType.Change:
+                    this.AttrCom[data.attribute] = data.value;
+                    OnAttributeChanged(data.attribute);
+                    break;
+                case ModifyType.Quantify:
+                    this.AttrCom[data.attribute] = data.value;
+                    OnAttributeChanged(data.attribute);
+                    break;
+                case ModifyType.Increment:
+                    this.AttrCom[data.attribute] += data.value;
+                    OnAttributeChanged(data.attribute);
+                    break;
+                default:
+                    break;
+            }
+
         }
 
-        void OnCantSelectBuffTick()
+        void OnAttributeChanged(AttributeType attribute)
         {
-
+            Debug.Log($"type: {attribute}   value:{this.AttrCom[attribute]}");
         }
 
         public void Update()
@@ -84,10 +97,15 @@ namespace War
             {
                 SkillCom.Play(1);
             }
-
-            BuffCom.Tick(Time.deltaTime);
         }
 
+        public void WarTick(int frame)
+        {
+            BuffCom.Tick(frame * WarReferees.oneFrameTime);
+        }
+
+
+        #region 废弃
         //TODO 封装移动组件
         Vector3? Destination = null;
         public async void TempMoveTo(Vector3 destination, MoveType moveType, float speed, Action action)
@@ -141,7 +159,29 @@ namespace War
         public void Hit(HitResult result)
         {
             result.Receiver.OnHit(result);
-            //throw new NotImplementedException();
         }
+
+        public void Attack()
+        {
+            BuffBase[] buffs = buffCom.GetBuffs(BuffTag.CantAttck);
+            if (buffs.Length > 0)
+            {
+                Debug.LogError("缴械");
+                return;
+            }
+
+            //buffs = buffCom.GetBuffs(BuffTag.UseSkill);
+            //for (int i = 0; i < buffs.Length; i++)
+            //{
+            //    var buff = buffs[i];
+            //    buff.Excute();
+            //}
+
+            buffCom.SendEvent(RoleEvent.Attack);
+
+        }
+
+        #endregion
+
     }
 }

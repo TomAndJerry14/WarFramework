@@ -9,7 +9,7 @@ namespace War
 {
     public class WarReferees
     {
-        const float oneFrameTime = 0.33f;
+        public const float oneFrameTime = 0.33f;
         public class Frame
         {
             public Frame(float time, CommandBase cmd)

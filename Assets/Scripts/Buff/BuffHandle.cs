@@ -11,7 +11,7 @@ namespace Buff
         private int id;
         public int Id => id;
 
-        public bool IsValid => this.buff != null;
+        public bool IsValid => this.buff != null && this.buff.IsValid;
 
         BuffBase buff;
         public BuffBase Buff => buff;
@@ -42,6 +42,12 @@ namespace Buff
                 buff.Exit();
                 this.buff = null;
             }
+        }
+
+        public void SetInValid()
+        {
+            this.buff.Exit();
+            this.buff = null;
         }
     }
 }

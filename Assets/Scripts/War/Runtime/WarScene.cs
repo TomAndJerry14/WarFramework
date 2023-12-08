@@ -69,14 +69,44 @@ public class WarScene : MonoBehaviour
             tags = new Buff.BuffTag[] { Buff.BuffTag.CantMove, Buff.BuffTag.CantAttck },
             durationTime = 5f,
             deltaTime = 0.5f,
-            isIncremental = true,
-            type = Buff.BuffType.ModifyAttriBute,
-
+            modifyType = Buff.ModifyType.Increment,
+            existType = Buff.BuffExistType.Duratime,
+            type = Buff.BuffType.AttriBute,
             value = -10,
         };
 
+        Buff.BuffData data2 = new Buff.BuffData()
+        {
+            id = 2,
+            buffName = "2",
+            maxStack = 1,
+            priority = 1,
+            stackable = true,
+
+            tags = new Buff.BuffTag[] { Buff.BuffTag.CantMove, Buff.BuffTag.CantAttck },
+            existType = Buff.BuffExistType.Forever,
+            type = Buff.BuffType.Event,
+            value = 3,
+        };
+
+        Buff.BuffData debuff = new Buff.BuffData()
+        {
+            id = 3,
+            buffName = "debuff",
+            maxStack = 3,
+            priority = 1,
+            stackable = true,
+
+            tags = new Buff.BuffTag[] { Buff.BuffTag.Hurt },
+
+            type = Buff.BuffType.Event,
+            durationTime = 5f,
+            existType = Buff.BuffExistType.Duratime,
+            value = 10,
+        };
+
         var buffCom = mainActor.BuffCom;
-        buffCom.Add(data);
+        buffCom.Add(data2);
         Debug.Log("War Scene");
     }
 

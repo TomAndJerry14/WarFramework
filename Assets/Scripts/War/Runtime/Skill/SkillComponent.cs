@@ -38,6 +38,11 @@ namespace War
 
 
             //btOwner.StartBehaviour(bt);
-        } 
+        }
+
+        internal void UseSkill(int value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
