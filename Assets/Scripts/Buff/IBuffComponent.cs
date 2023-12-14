@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Buff
+﻿namespace Buff
 {
     public interface IBuffComponent
     {
@@ -19,5 +13,7 @@ namespace Buff
         public BuffBase[] GetBuffs(BuffTag tag);
 
         public BuffBase[] GetBuffs(BuffExistType type, BuffTag tag);
+
+        public void Clear();
     }
 }

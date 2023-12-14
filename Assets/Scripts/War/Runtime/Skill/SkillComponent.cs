@@ -42,7 +42,7 @@ namespace War
 
         internal void UseSkill(int value)
         {
-            throw new NotImplementedException();
+            Debug.Log($" 使用id:{value} 技能");
         }
     }
 }

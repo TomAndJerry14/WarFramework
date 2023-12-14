@@ -59,54 +59,9 @@ public class WarScene : MonoBehaviour
 
         //Test();
 
-        Buff.BuffData data = new Buff.BuffData()
-        {
-            id = 1,
-            buffName = "1",
-            maxStack = 1,
-            priority = 1,
-            stackable = true,
-            tags = new Buff.BuffTag[] { Buff.BuffTag.CantMove, Buff.BuffTag.CantAttck },
-            durationTime = 5f,
-            deltaTime = 0.5f,
-            modifyType = Buff.ModifyType.Increment,
-            existType = Buff.BuffExistType.Duratime,
-            type = Buff.BuffType.AttriBute,
-            value = -10,
-        };
+        
 
-        Buff.BuffData data2 = new Buff.BuffData()
-        {
-            id = 2,
-            buffName = "2",
-            maxStack = 1,
-            priority = 1,
-            stackable = true,
-
-            tags = new Buff.BuffTag[] { Buff.BuffTag.CantMove, Buff.BuffTag.CantAttck },
-            existType = Buff.BuffExistType.Forever,
-            type = Buff.BuffType.Event,
-            value = 3,
-        };
-
-        Buff.BuffData debuff = new Buff.BuffData()
-        {
-            id = 3,
-            buffName = "debuff",
-            maxStack = 3,
-            priority = 1,
-            stackable = true,
-
-            tags = new Buff.BuffTag[] { Buff.BuffTag.Hurt },
-
-            type = Buff.BuffType.Event,
-            durationTime = 5f,
-            existType = Buff.BuffExistType.Duratime,
-            value = 10,
-        };
-
-        var buffCom = mainActor.BuffCom;
-        buffCom.Add(data2);
+        
         Debug.Log("War Scene");
     }
 
@@ -190,8 +145,61 @@ public class WarScene : MonoBehaviour
     }
 
 
+    Buff.BuffData data = new Buff.BuffData()
+    {
+        id = 1,
+        registerType = Buff.BuffEnum.ModifyAttribute,
+        buffName = "1",
+        maxStack = 1,
+        priority = 1,
+        stackable = false,
+        tags = new Buff.BuffTag[] { Buff.BuffTag.CantMove, Buff.BuffTag.CantAttck },
+        durationTime = 5f,
+        deltaTime = 0.5f,
+        modifyType = Buff.ModifyType.Increment,
+        existType = Buff.BuffExistType.Duratime,
+        type = Buff.BuffType.AttriBute,
+        value = -10,
+    };
+
+    Buff.BuffData data2 = new Buff.BuffData()
+    {
+        id = 2,
+        registerType = Buff.BuffEnum.UseSkill,
+        buffName = "2",
+        maxStack = 1,
+        priority = 1,
+        stackable = true,
+
+        tags = new Buff.BuffTag[] { Buff.BuffTag.CantMove, Buff.BuffTag.CantAttck },
+        existType = Buff.BuffExistType.Forever,
+        type = Buff.BuffType.State,
+        value = 1,
+    };
+
+    Buff.BuffData debuff = new Buff.BuffData()
+    {
+        id = 3, 
+        buffName = "debuff",
+        maxStack = 3,
+        priority = 1,
+        stackable = true,
+
+        tags = new Buff.BuffTag[] { Buff.BuffTag.ModifyAttribute },
+
+        type = Buff.BuffType.State,
+        durationTime = 5f,
+        existType = Buff.BuffExistType.Duratime,
+        value = 10,
+    };
     void Update()
     {
         referees.Tick();
+
+        if (Input.GetKeyUp( KeyCode.F1))
+        {
+            var buffCom = mainActor.BuffCom;
+            buffCom.Add(data2);
+        }
     }
 }

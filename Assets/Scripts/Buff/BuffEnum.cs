@@ -6,11 +6,20 @@ using System.Threading.Tasks;
 
 namespace Buff
 {
+    public enum BuffEnum
+    {
+        ModifyAttribute,
+
+
+
+        UseSkill,
+
+
+    }
     public enum BuffType
     {
         AttriBute,
-        State,//这种只是相当于一个变量，用于给上层获取
-        Event,//触发一个事件
+        State,
     }
 
     //存在方式
@@ -27,18 +36,14 @@ namespace Buff
 
     public enum BuffTag
     {
-        Cure,
-        Hurt,
-
-        SpeedUp,
-        SpeedDown,
-
-        AttackUp,
-        AttackDown,
+        ModifyAttribute,
+        FixedAttribute,
 
         CantMove,
         CantAttck,
         CantSelect,
+
+
 
         Hide,//隐身        
     }
@@ -55,8 +60,6 @@ namespace Buff
 
         Died,
     }
-
-    //触发条件
 
     //修改方式
     public enum ModifyType

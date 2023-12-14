@@ -1,16 +1,15 @@
-﻿using Buff;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace War
+namespace Buff
 {
     public static class BuffFactory
     {
-        static Dictionary<BuffExistType, Type> typeDic = new Dictionary<BuffExistType, Type>();
+        static Dictionary<BuffEnum, Type> typeDic = new Dictionary<BuffEnum, Type>();
 
         static BuffFactory()
         {
@@ -24,7 +23,7 @@ namespace War
                     object o = Activator.CreateInstance(type);
                     if (o as BuffBase != null)
                     {
-                        BuffExistType buffType = ((BuffBase)o).ExistType;
+                        var buffType = ((BuffBase)o).registerType;
                         typeDic[buffType] = type;
                     }
                 }
@@ -34,12 +33,12 @@ namespace War
         public static BuffBase CreateBuff(BuffData data, Action<BuffData> action)
         {
             BuffBase buff = null;
-            if (typeDic.TryGetValue(data.existType, out var type))
-            {
+
+            if (typeDic.TryGetValue(data.registerType, out var type))
                 buff = (BuffBase)Activator.CreateInstance(type);
-            }
             else
-                buff = (BuffBase)Activator.CreateInstance(typeof(BuffBase));
+                throw new Exception($"没有{data.registerType}的class");
+
             buff.Init(data, action);
             return buff;
         }

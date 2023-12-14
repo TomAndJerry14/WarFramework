@@ -12,6 +12,8 @@ namespace Buff
         
         public int id;
 
+        public BuffEnum registerType;
+
         public string buffName;
 
         public int maxStack;

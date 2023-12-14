@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 
 [Serializable]
-public class AttributeCom
+public class AttributeComponent : IAttributeGetter
 {
     [ShowInInspector]
     private float hp = 100;
@@ -20,7 +20,7 @@ public class AttributeCom
     }
 
     protected Dictionary<AttributeType, float> attrDic = new Dictionary<AttributeType, float>();
-    public AttributeCom()
+    public AttributeComponent()
     {
         foreach (AttributeType item in Enum.GetValues(typeof(AttributeType)))
         {

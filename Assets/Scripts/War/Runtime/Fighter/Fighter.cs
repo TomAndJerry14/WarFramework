@@ -7,17 +7,15 @@ using UnityEngine;
 
 namespace War
 {
-    public class Fighter : Role, IReceiveHit, ISendHit
+    //TODO 流程 拿到初始 -> 计算装备 -> 计算buff -> 结算伤害 -> 判断状态
+    public class Fighter : Role, IReceiveHit, ISendHit, IAttributeGetter
     {
         [SerializeField]
         private SkillComponent skillCom = new SkillComponent();
         public SkillComponent SkillCom { get => skillCom; }
 
         [SerializeField]
-        private AttributeCom attrCom = new AttributeCom();
-        public AttributeCom AttrCom { get => attrCom; }
-
-
+        private AttributeComponent roleAttrCom = new AttributeComponent();
 
         public StateCtrl StateCtrl { get; set; }
 
@@ -28,18 +26,10 @@ namespace War
             set => owner = value;
         }
 
-        private BuffComponent buffCom;
-        public BuffComponent BuffCom
+        public float this[AttributeType type]
         {
-            get
-            {
-                if (buffCom == null)
-                {
-                    buffCom = new BuffComponent();
-                    buffCom.OnBuffExcute += OnBuffExcute;
-                }
-                return buffCom;
-            }
+            get => roleAttrCom[type] + buffCom.AttrCom[type];
+            set => roleAttrCom[type] = value;
         }
 
         public FighterTeamEnum teamEnum;
@@ -50,54 +40,26 @@ namespace War
             StateCtrl = new StateCtrl();
         }
 
-        void OnBuffExcute(BuffData data)
+        #region Buff
+        private BuffComponent buffCom;
+        public BuffComponent BuffCom
         {
-            Debug.Log("OnBuffExcute");
-            if (data.type == BuffType.AttriBute)
+            get
             {
-                OnBuffTick(data);
-            }
-            else if (data.type == BuffType.Event)
-            {
-                skillCom.UseSkill((int)data.value);
-                Debug.Log($" skillCom.UseSkill{((int)data.value)}");
+                if (buffCom == null)
+                {
+                    buffCom = new BuffComponent(this);
+                    buffCom.OnBuffExcute += OnBuffExcute;
+                }
+                return buffCom;
             }
         }
 
-        private void OnBuffTick(BuffData data)
-        {
-            switch (data.modifyType)
-            {
-                case ModifyType.Change:
-                    this.AttrCom[data.attribute] = data.value;
-                    OnAttributeChanged(data.attribute);
-                    break;
-                case ModifyType.Quantify:
-                    this.AttrCom[data.attribute] = data.value;
-                    OnAttributeChanged(data.attribute);
-                    break;
-                case ModifyType.Increment:
-                    this.AttrCom[data.attribute] += data.value;
-                    OnAttributeChanged(data.attribute);
-                    break;
-                default:
-                    break;
-            }
+        
+        #endregion
 
-        }
+        
 
-        void OnAttributeChanged(AttributeType attribute)
-        {
-            Debug.Log($"type: {attribute}   value:{this.AttrCom[attribute]}");
-        }
-
-        public void Update()
-        {
-            if (Input.GetKeyUp(KeyCode.Q) && isMainActor)
-            {
-                SkillCom.Play(1);
-            }
-        }
 
         public void WarTick(int frame)
         {
@@ -179,6 +141,36 @@ namespace War
 
             buffCom.SendEvent(RoleEvent.Attack);
 
+        }
+
+
+        int lastFrame = 0;
+        public void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.Q) && isMainActor)
+            {
+                SkillCom.Play(1);
+            }
+            else if (Input.GetKeyUp(KeyCode.F2) && isMainActor)
+            {
+                BuffCom.SendEvent(RoleEvent.Attack);
+            }
+            else if (Input.GetKeyUp(KeyCode.F3) && isMainActor)
+            {
+                BuffCom.Clear();
+            }
+
+
+
+
+            if (WarScene.Instance)
+            {
+                if (lastFrame != WarScene.Instance.referees.CurFrame)
+                {
+                    WarTick(WarScene.Instance.referees.CurFrame);
+                    lastFrame = WarScene.Instance.referees.CurFrame;
+                }
+            }
         }
 
         #endregion

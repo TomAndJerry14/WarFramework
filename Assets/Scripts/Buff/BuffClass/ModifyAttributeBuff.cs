@@ -1,23 +1,27 @@
-﻿using Buff;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace War
+﻿namespace Buff
 {
     public class ModifyAttributeBuff : BuffBase
     {
+        public override BuffEnum registerType => BuffEnum.ModifyAttribute;
+
         protected override void OnEnter()
         {
-            if (data.modifyType == ModifyType.Quantify)
+            if (data.modifyType == ModifyType.Quantify || data.modifyType == ModifyType.Change)
                 Excute();
         }
 
-        protected override void OnExit()
+        protected override void OnTick(float time)
         {
+            base.OnTick(time);
 
+            if (data.modifyType == ModifyType.Increment)
+                Excute();
+        }
+
+        protected override void OnTimeHandleInValid()
+        {
+            base.OnTimeHandleInValid();
+            Exit();
         }
     }
 }

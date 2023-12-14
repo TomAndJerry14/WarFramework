@@ -35,17 +35,17 @@ namespace War
                         case EffectEnum.Friend:
                             if (fighter.teamEnum == sender.teamEnum)
                             {
-                                fighter.AttrCom.Hp += value;
+                                fighter[AttributeType.HP] += value;
                             }
                             break;
                         case EffectEnum.Enemy:
                             if (fighter.teamEnum != sender.teamEnum)
                             {
-                                fighter.AttrCom.Hp += value;
+                                fighter[AttributeType.HP] += value;
                             }
                             break;
                         case EffectEnum.All:
-                            fighter.AttrCom.Hp += value;
+                            fighter[AttributeType.HP] += value;
                             break;
                     }
                 }
